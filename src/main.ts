@@ -3,6 +3,9 @@ const scaleType = document.getElementById("scale-type") as HTMLHeadingElement;
 const scaleAccidental = document.getElementById(
   "accidentals"
 ) as HTMLHeadElement;
+const startStopButton = document.getElementById(
+  "start-stop"
+) as HTMLButtonElement;
 
 const scales = ["A", "B", "C", "D", "E", "F", "G"];
 const types = ["Major", "Minor"];
@@ -20,10 +23,35 @@ const chooseRandomScale = (): {
   };
 };
 
-const start = () => {
-  const changeScale = setInterval(() => {
-    const getRandomScale = chooseRandomScale();
-  }, 2000);
+const changeScaleDom = (): void => {
+  const getRandomScale = chooseRandomScale();
+  scaleElm.innerText = getRandomScale.scale;
+  scaleAccidental.innerText = getRandomScale.accidentals;
+  scaleType.innerText = getRandomScale.type;
 };
+
+let changeScale: number;
+let started: boolean = false;
+
+const start = (): void => {
+  changeScale = setInterval(changeScaleDom, 500);
+  startStopButton.innerText = "Stop";
+  started = true;
+};
+
+const stop = (): void => {
+  clearInterval(changeScale);
+  startStopButton.innerText = "Start";
+  started = false;
+};
+
+startStopButton.addEventListener("click", (e) => {
+  e.preventDefault();
+  if (started) {
+    stop();
+  } else {
+    start();
+  }
+});
 
 export {};
