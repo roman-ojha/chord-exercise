@@ -1,4 +1,4 @@
-import { useSpeed, useScales } from "./state";
+import { useSpeed, useScales, scaleType } from "./state";
 
 // Speed
 const speedValueElm = document.getElementById(
@@ -23,15 +23,16 @@ const scaleListInputContainerElm = document.getElementById(
   "scale-list-input-container"
 ) as HTMLDivElement;
 var innerHTMLOfScaleInputContainer: string = "";
-const [scales, setScales] = useScales();
-console.log(scales);
+const [getScales, setScale] = useScales();
 
-scales.forEach((scale) => {
+getScales().forEach((scale) => {
   innerHTMLOfScaleInputContainer += `
           <div class="single-scale-input-container">
-            <input type="checkbox" id="scale-${scale.name.toLowerCase()}-input" ${
+            <input type="checkbox" name="${
+              scale.name
+            }" class="test" id="scale-${scale.name.toLowerCase()}-input" ${
     scale.status ? "checked" : ""
-  }/>
+  } oninput='changeScale(this)'/>
             <label for="scale-${scale.name.toLowerCase()}-input">${
     scale.name
   }</label>
@@ -39,6 +40,16 @@ scales.forEach((scale) => {
   `;
 });
 
+function changeScale(checkbox: HTMLInputElement) {
+  const name: scaleType["name"] = checkbox.name as scaleType["name"];
+  const checked: boolean = checkbox.checked;
+  const newScale = getScales().map((scale) =>
+    scale.name === name ? { name: name, status: checked } : scale
+  );
+  setScale(newScale);
+}
+(<any>window).changeScale = changeScale;
+
 scaleListInputContainerElm.innerHTML = innerHTMLOfScaleInputContainer;
 
-export {};
+export { changeScale };
