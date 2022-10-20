@@ -25,27 +25,42 @@ header h1 {
 }
 main {
   display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+  height: 70vh;
+}
+
+#chord {
+  display: flex;
   justify-content: center;
   align-items: flex-end;
   gap: 5px;
 }
 
-main h1 {
+#chord h1 {
   color: white;
   font-size: 5rem;
 }
 
-main h2 {
+#chord h2 {
   color: white;
   font-size: 4rem;
 }
 
-main h3 {
+#chord h3 {
   color: white;
   font-size: 3rem;
 }
 
-footer button {
+#button-and-setting {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+#button-and-setting button {
   background-color: red;
   color: white;
   padding: 1.5rem 4rem;
@@ -57,10 +72,20 @@ footer button {
   font-weight: 700;
 }
 
-footer button:hover {
+#button-and-setting button:hover {
   transform: scale(1.02);
 }
 
-footer button:active {
+#button-and-setting button:active {
   transform: scale(0.98);
+}
+
+#button-and-setting a {
+  position: absolute;
+  right: -3rem;
+}
+
+#setting-icon {
+  color: white;
+  font-size: 2rem;
 }

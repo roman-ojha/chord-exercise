@@ -14,17 +14,21 @@
         <h1>Chord Exercise</h1>
       </header>
       <main>
-        <h1 id="scale">A</h1>
-        <h2 id="accidentals"></h2>
-        <h3 id="scale-type">Major</h3>
+        <div id="chord">
+          <h1 id="scale">A</h1>
+          <h2 id="accidentals"></h2>
+          <h3 id="scale-type">Major</h3>
+        </div>
+        <div id="button-and-setting">
+          <button id="start-stop" type="button">Start</button>
+          <a href="./screen/settings.html">
+            <iconify-icon
+              icon="ant-design:setting-filled"
+              id="setting-icon"
+            ></iconify-icon>
+          </a>
+        </div>
       </main>
-      <footer>
-        <button id="start-stop" type="button">Start</button>
-        <iconify-icon
-          icon="ant-design:setting-filled"
-          id="setting-icon"
-        ></iconify-icon>
-      </footer>
     </div>
     <script type="module" src="./scripts/index.ts"></script>
   </body>
