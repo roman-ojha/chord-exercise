@@ -1,4 +1,4 @@
-import { useSpeed } from "./state";
+import { useSpeed, useScales } from "./state";
 
 // Speed
 const speedValueElm = document.getElementById(
@@ -23,13 +23,18 @@ const scaleListInputContainerElm = document.getElementById(
   "scale-list-input-container"
 ) as HTMLDivElement;
 var innerHTMLOfScaleInputContainer: string = "";
-const scales = ["A", "B", "C", "D", "E", "F", "G"];
+const [scales, setScales] = useScales();
+console.log(scales);
 
-scales.forEach((value) => {
+scales.forEach((scale) => {
   innerHTMLOfScaleInputContainer += `
           <div class="single-scale-input-container">
-            <input type="checkbox" id="scale-${value.toLowerCase()}-input" />
-            <label for="scale-${value.toLowerCase()}-input">${value}</label>
+            <input type="checkbox" id="scale-${scale.name.toLowerCase()}-input" ${
+    scale.status ? "checked" : ""
+  }/>
+            <label for="scale-${scale.name.toLowerCase()}-input">${
+    scale.name
+  }</label>
           </div>
   `;
 });

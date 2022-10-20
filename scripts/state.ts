@@ -1,14 +1,35 @@
 interface state {
   speed: number;
-  scale: {
-    a: boolean;
-    b: boolean;
-    c: boolean;
-    d: boolean;
-    e: boolean;
-    f: boolean;
-    g: boolean;
-  };
+  scales: [
+    {
+      name: "A";
+      status: boolean;
+    },
+    {
+      name: "B";
+      status: boolean;
+    },
+    {
+      name: "C";
+      status: boolean;
+    },
+    {
+      name: "D";
+      status: boolean;
+    },
+    {
+      name: "E";
+      status: boolean;
+    },
+    {
+      name: "F";
+      status: boolean;
+    },
+    {
+      name: "G";
+      status: boolean;
+    }
+  ];
 }
 
 const initState = () => {
@@ -19,15 +40,36 @@ const initState = () => {
       "state",
       JSON.stringify(<state>{
         speed: 500,
-        scale: {
-          a: true,
-          b: true,
-          c: true,
-          d: true,
-          e: true,
-          f: true,
-          g: true,
-        },
+        scales: [
+          {
+            name: "A",
+            status: true,
+          },
+          {
+            name: "B",
+            status: true,
+          },
+          {
+            name: "C",
+            status: true,
+          },
+          {
+            name: "D",
+            status: true,
+          },
+          {
+            name: "E",
+            status: true,
+          },
+          {
+            name: "F",
+            status: true,
+          },
+          {
+            name: "G",
+            status: true,
+          },
+        ],
       })
     );
   }
@@ -55,15 +97,15 @@ const useSpeed = (): [number, (newSpeed: number) => void] => {
   return [getSpeed(), setSpeed];
 };
 
-const useScale = (): [state["scale"], (newScale: any) => void] => {
-  const getScale = (): state["scale"] => {
-    const scale: state["scale"] = (
-      JSON.parse(localStorage.getItem("scale")!) as state
-    ).scale;
+const useScales = (): [state["scales"], (newScale: any) => void] => {
+  const getScale = (): state["scales"] => {
+    const scale: state["scales"] = (
+      JSON.parse(localStorage.getItem("state")!) as state
+    ).scales;
     return scale;
   };
 
-  const setScale = (newScale: state["scale"]) => {
+  const setScale = (newScale: state["scales"]) => {
     const state: state = JSON.parse(localStorage.getItem("state")!) as state;
     localStorage.setItem(
       "state",
@@ -76,4 +118,4 @@ const useScale = (): [state["scale"], (newScale: any) => void] => {
   return [getScale(), setScale];
 };
 
-export { useSpeed, useScale };
+export { useSpeed, useScales };
