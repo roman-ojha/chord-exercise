@@ -1,4 +1,4 @@
-import { getSpeed } from "./state";
+import { useSpeed } from "./state";
 
 const scaleElm = document.getElementById("scale") as HTMLHeadingElement;
 const scaleType = document.getElementById("scale-type") as HTMLHeadingElement;
@@ -11,6 +11,8 @@ const startStopButton = document.getElementById(
 const scales = ["A", "B", "C", "D", "E", "F", "G"];
 const types = ["Major", "Minor"];
 const accidentals = ["", "#", "♭"];
+
+const [speed] = useSpeed();
 
 const chooseRandomScale = (): {
   scale: string;
@@ -35,8 +37,7 @@ let changeScale: number;
 let started: boolean = false;
 
 const start = (): void => {
-  console.log(getSpeed());
-  changeScale = setInterval(changeScaleDom, getSpeed());
+  changeScale = setInterval(changeScaleDom, speed);
   startStopButton.innerText = "Stop";
   started = true;
 };

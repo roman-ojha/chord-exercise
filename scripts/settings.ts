@@ -1,4 +1,4 @@
-import { getSpeed, setSpeed } from "./state";
+import { useSpeed } from "./state";
 
 const speedValueElm = document.getElementById(
   "speed-value"
@@ -6,9 +6,10 @@ const speedValueElm = document.getElementById(
 const speedInputElm = document.getElementById(
   "setting-speed-range"
 ) as HTMLInputElement;
+const [speed, setSpeed] = useSpeed();
 
-speedValueElm.innerText = speedInputElm.value;
-speedInputElm.setAttribute("value", getSpeed().toString());
+speedInputElm.setAttribute("value", speed.toString());
+speedValueElm.innerText = speed.toString();
 
 speedInputElm.addEventListener("input", (e) => {
   const value = (e.target as HTMLInputElement).value;

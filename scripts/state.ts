@@ -2,12 +2,19 @@ interface state {
   speed: number;
 }
 
-localStorage.setItem(
-  "state",
-  JSON.stringify(<state>{
-    speed: 100,
-  })
-);
+const initState = () => {
+  const state: state | null = JSON.parse(localStorage.getItem("state")!);
+  if (!state) {
+    console.log("not");
+    localStorage.setItem(
+      "state",
+      JSON.stringify(<state>{
+        speed: 500,
+      })
+    );
+  }
+};
+initState();
 
 const getSpeed = (): number => {
   const speed: state["speed"] = (
@@ -16,6 +23,19 @@ const getSpeed = (): number => {
   return speed;
 };
 
-const setSpeed = (newSpeed: number) => {};
+const setSpeed = (newSpeed: number) => {
+  const state: state = JSON.parse(localStorage.getItem("state")!) as state;
+  localStorage.setItem(
+    "state",
+    JSON.stringify(<state>{
+      ...state,
+      speed: newSpeed,
+    })
+  );
+};
 
-export { getSpeed, setSpeed };
+const useSpeed = (): [number, (newSpeed: number) => void] => {
+  return [getSpeed(), setSpeed];
+};
+
+export { useSpeed };
