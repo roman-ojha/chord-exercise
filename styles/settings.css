@@ -45,9 +45,6 @@ header h1 {
   gap: 15px;
 }
 
-.single-scale-input-container {
-}
-
 .single-scale-input-container input {
   width: 1.5rem;
   height: 1.5rem;
