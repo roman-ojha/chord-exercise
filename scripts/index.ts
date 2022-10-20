@@ -1,4 +1,4 @@
-import { useSpeed } from "./state";
+import { useSpeed, useScales, scaleType } from "./state";
 
 const scaleElm = document.getElementById("scale") as HTMLHeadingElement;
 const scaleType = document.getElementById("scale-type") as HTMLHeadingElement;
@@ -8,10 +8,9 @@ const scaleAccidental = document.getElementById(
 const startStopButton = document.getElementById(
   "start-stop"
 ) as HTMLButtonElement;
-const scales = ["A", "B", "C", "D", "E", "F", "G"];
+const [getScales] = useScales();
 const types = ["Major", "Minor"];
 const accidentals = ["", "#", "♭"];
-
 const [speed] = useSpeed();
 
 const chooseRandomScale = (): {
@@ -19,8 +18,9 @@ const chooseRandomScale = (): {
   type: string;
   accidentals: string;
 } => {
+  const allowedScale = getScales().filter((scale) => scale.status);
   return {
-    scale: scales[Math.floor(Math.random() * scales.length)],
+    scale: allowedScale[Math.floor(Math.random() * allowedScale.length)].name,
     type: types[Math.floor(Math.random() * types.length)],
     accidentals: accidentals[Math.floor(Math.random() * accidentals.length)],
   };

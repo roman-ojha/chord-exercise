@@ -22,34 +22,44 @@ speedInputElm.addEventListener("input", (e) => {
 const scaleListInputContainerElm = document.getElementById(
   "scale-list-input-container"
 ) as HTMLDivElement;
-var innerHTMLOfScaleInputContainer: string = "";
 const [getScales, setScale] = useScales();
 
-getScales().forEach((scale) => {
-  innerHTMLOfScaleInputContainer += `
-          <div class="single-scale-input-container">
-            <input type="checkbox" name="${
-              scale.name
-            }" class="test" id="scale-${scale.name.toLowerCase()}-input" ${
-    scale.status ? "checked" : ""
-  } oninput='changeScale(this)'/>
-            <label for="scale-${scale.name.toLowerCase()}-input">${
-    scale.name
-  }</label>
-          </div>
+const renderScaleList = () => {
+  var innerHTMLOfScaleInputContainer: string = "";
+  getScales().forEach((scale) => {
+    innerHTMLOfScaleInputContainer += `
+  <div class="single-scale-input-container">
+    <input type="checkbox" name="${
+      scale.name
+    }" class="test" id="scale-${scale.name.toLowerCase()}-input" ${
+      scale.status ? "checked" : ""
+    } oninput='updateScale(this)'/>
+    <label for="scale-${scale.name.toLowerCase()}-input">${scale.name}</label>
+  </div>
   `;
-});
+  });
+  scaleListInputContainerElm.innerHTML = innerHTMLOfScaleInputContainer;
+};
+renderScaleList();
 
-function changeScale(checkbox: HTMLInputElement) {
+function updateScale(checkbox: HTMLInputElement) {
   const name: scaleType["name"] = checkbox.name as scaleType["name"];
   const checked: boolean = checkbox.checked;
-  const newScale = getScales().map((scale) =>
-    scale.name === name ? { name: name, status: checked } : scale
-  );
-  setScale(newScale);
+  if (
+    getScales().filter((scale) => scale.status).length !== 1 ||
+    (getScales().filter((scale) => scale.status).length === 1 && checked)
+  ) {
+    const newScale = getScales().map((scale) =>
+      scale.name === name ? { name: name, status: checked } : scale
+    );
+    setScale(newScale);
+  } else if (
+    getScales().filter((scale) => scale.status).length === 1 &&
+    !checked
+  ) {
+    renderScaleList();
+  }
 }
-(<any>window).changeScale = changeScale;
+(<any>window).updateScale = updateScale;
 
-scaleListInputContainerElm.innerHTML = innerHTMLOfScaleInputContainer;
-
-export { changeScale };
+export {};
