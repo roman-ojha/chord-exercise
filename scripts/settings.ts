@@ -62,4 +62,10 @@ function updateScale(checkbox: HTMLInputElement) {
 }
 (<any>window).updateScale = updateScale;
 
+// save button
+const saveButton = document.getElementById("save-button");
+saveButton?.addEventListener("click", () => {
+  history.back();
+});
+
 export {};

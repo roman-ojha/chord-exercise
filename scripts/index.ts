@@ -12,6 +12,7 @@ const [getScales] = useScales();
 const types = ["Major", "Minor"];
 const accidentals = ["", "#", "♭"];
 const [speed] = useSpeed();
+scaleElm.innerText = getScales().filter((scale) => scale.status)[0].name;
 
 const chooseRandomScale = (): {
   scale: string;
