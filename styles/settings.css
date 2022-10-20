@@ -25,12 +25,46 @@ header h1 {
   font-size: 4rem;
 }
 
+#scale-input-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#scale-input-container h3 {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 300;
+}
+
+#scale-list-input-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
+
+.single-scale-input-container {
+}
+
+.single-scale-input-container input {
+  width: 1.5rem;
+  height: 1.5rem;
+  cursor: pointer;
+}
+
+.single-scale-input-container label {
+  color: white;
+  font-size: 2rem;
+}
+
 #setting-speed {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 5px;
+  gap: 10px;
 }
 
 #speed-value {
