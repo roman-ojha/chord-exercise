@@ -1,3 +1,5 @@
+import { getSpeed } from "./state";
+
 const scaleElm = document.getElementById("scale") as HTMLHeadingElement;
 const scaleType = document.getElementById("scale-type") as HTMLHeadingElement;
 const scaleAccidental = document.getElementById(
@@ -6,7 +8,6 @@ const scaleAccidental = document.getElementById(
 const startStopButton = document.getElementById(
   "start-stop"
 ) as HTMLButtonElement;
-
 const scales = ["A", "B", "C", "D", "E", "F", "G"];
 const types = ["Major", "Minor"];
 const accidentals = ["", "#", "♭"];
@@ -34,7 +35,8 @@ let changeScale: number;
 let started: boolean = false;
 
 const start = (): void => {
-  changeScale = setInterval(changeScaleDom, 500);
+  console.log(getSpeed());
+  changeScale = setInterval(changeScaleDom, getSpeed());
   startStopButton.innerText = "Stop";
   started = true;
 };

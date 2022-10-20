@@ -80,10 +80,6 @@ header h1 {
   outline: none;
 }
 
-#setting-speed-range-container
-  input[type="range"]::-webkit-slider-runnable-track {
-}
-
 #setting-speed-range-container input[type="range"]::-webkit-slider-thumb {
   height: 3rem;
   width: 3rem;
