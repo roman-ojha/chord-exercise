@@ -5,16 +5,34 @@
     <link rel="icon" type="image/svg+xml" href="../assets/settings.svg" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../styles/settings.css">
+    <link rel="stylesheet" href="../styles/settings.css" />
     <title>settings</title>
   </head>
   <body>
     <div id="settings-container">
-
       <header>
         <h1>Settings</h1>
       </header>
-      <input type="range"></input>
+      <main>
+        <div id="setting-speed">
+          <output name="speed-value" for="setting-speed-range" id="speed-value"
+            >100</output
+          >
+          <div id="setting-speed-range-container">
+            <!-- <p>0 ms</p> -->
+            <input
+              type="range"
+              step="100"
+              min="0"
+              max="2000"
+              value="100"
+              id="setting-speed-range"
+            />
+            <!-- <p>2000 ms</p> -->
+          </div>
+          <label for="setting-speed-range">Speed</label>
+        </div>
+      </main>
     </div>
     <script src="../scripts/settings.ts" type="module"></script>
   </body>

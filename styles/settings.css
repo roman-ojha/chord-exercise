@@ -22,4 +22,75 @@ body {
 header h1 {
   margin: 0px;
   color: white;
+  font-size: 4rem;
+}
+
+#setting-speed {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+#speed-value {
+  color: white;
+  font-size: 1rem;
+}
+
+#setting-speed-range-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+#setting-speed-range-container p {
+  color: white;
+  font-size: 1rem;
+}
+
+#setting-speed-range-container input[type="range"] {
+  width: 300px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#setting-speed-range-container input[type="range"]::before {
+  /* width: 300px; */
+  content: attr(min);
+  color: white;
+  left: -20px;
+  position: absolute;
+  font-size: 1rem;
+}
+
+#setting-speed-range-container input[type="range"]::after {
+  /* width: 300px; */
+  content: attr(max);
+  color: white;
+  right: -50px;
+  position: absolute;
+  font-size: 1rem;
+}
+
+#setting-speed-range-container input[type="range"]:focus {
+  outline: none;
+}
+
+#setting-speed-range-container
+  input[type="range"]::-webkit-slider-runnable-track {
+}
+
+#setting-speed-range-container input[type="range"]::-webkit-slider-thumb {
+  height: 3rem;
+  width: 3rem;
+  cursor: pointer;
+}
+
+#setting-speed label {
+  color: white;
+  font-size: 1.5rem;
 }

@@ -23,6 +23,7 @@ header h1 {
   color: white;
   font-size: 4rem;
 }
+
 main {
   display: flex;
   justify-content: space-evenly;
