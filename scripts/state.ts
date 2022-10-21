@@ -1,4 +1,4 @@
-export interface scaleType {
+export interface Scale {
   name: "A" | "B" | "C" | "D" | "E" | "F" | "G";
   status: boolean;
 }
@@ -10,7 +10,7 @@ export interface TypeOfScale {
 
 interface state {
   speed: number;
-  scales: scaleType[];
+  scales: Scale[];
   scaleType: TypeOfScale[];
 }
 
@@ -117,14 +117,14 @@ const useScaleType = (): [
   () => state["scaleType"],
   (newState: state["scaleType"]) => void
 ] => {
-  const getScale = (): state["scaleType"] => {
+  const getScaleType = (): state["scaleType"] => {
     const scale: state["scaleType"] = (
       JSON.parse(localStorage.getItem("state")!) as state
     ).scaleType;
     return scale;
   };
 
-  const setScale = (newState: state["scaleType"]) => {
+  const setScaleType = (newState: state["scaleType"]) => {
     const state: state = JSON.parse(localStorage.getItem("state")!) as state;
     localStorage.setItem(
       "state",
@@ -134,7 +134,7 @@ const useScaleType = (): [
       })
     );
   };
-  return [getScale, setScale];
+  return [getScaleType, setScaleType];
 };
 
 export { useSpeed, useScales, useScaleType };

@@ -12,7 +12,7 @@ body {
 #settings-container {
   display: flex;
   background-color: #0d0d0d;
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
   flex-direction: column;
   justify-content: space-around;
@@ -62,6 +62,37 @@ main {
 .single-scale-input-container label {
   color: white;
   font-size: 2rem;
+}
+
+#scale-type-input-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#scale-type-input-container h3 {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 300;
+}
+
+#scale-type-list-input-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
+
+.single-scale-type-input-container input {
+  width: 1.3rem;
+  height: 1.3rem;
+  cursor: pointer;
+}
+
+.single-scale-type-input-container label {
+  color: white;
+  font-size: 1.8rem;
 }
 
 #setting-speed {
