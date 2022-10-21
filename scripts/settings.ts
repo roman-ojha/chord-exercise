@@ -25,9 +25,9 @@ const scaleListInputContainerElm = document.getElementById(
 const [getScales, setScale] = useScales();
 
 const renderScaleList = () => {
-  var innerHTMLOfScaleInputContainer: string = "";
+  var innerHtml: string = "";
   getScales().forEach((scale) => {
-    innerHTMLOfScaleInputContainer += `
+    innerHtml += `
   <div class="single-scale-input-container">
     <input type="checkbox" name="${
       scale.name
@@ -38,7 +38,7 @@ const renderScaleList = () => {
   </div>
   `;
   });
-  scaleListInputContainerElm.innerHTML = innerHTMLOfScaleInputContainer;
+  scaleListInputContainerElm.innerHTML = innerHtml;
 };
 renderScaleList();
 
@@ -61,6 +61,28 @@ function updateScale(checkbox: HTMLInputElement) {
   }
 }
 (<any>window).updateScale = updateScale;
+
+// Scale type
+const scaleTypeListInputContainer = document.getElementById(
+  "scale-type-list-input-container"
+) as HTMLDivElement;
+
+const renderScaleTypeList = () => {
+  var innerHtml: string = "";
+  getScales().forEach((scale) => {
+    innerHtml += `
+  <div class="single-scale-input-container">
+    <input type="checkbox" name="${
+      scale.name
+    }" class="test" id="scale-${scale.name.toLowerCase()}-input" ${
+      scale.status ? "checked" : ""
+    } oninput='updateScale(this)'/>
+    <label for="scale-${scale.name.toLowerCase()}-input">${scale.name}</label>
+  </div>
+  `;
+  });
+  scaleTypeListInputContainer.innerHTML = innerHtml;
+};
 
 // save button
 const saveButton = document.getElementById("back-button") as HTMLButtonElement;

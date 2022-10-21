@@ -3,9 +3,15 @@ export interface scaleType {
   status: boolean;
 }
 
+export interface TypeOfScale {
+  name: "Major" | "Minor";
+  status: boolean;
+}
+
 interface state {
   speed: number;
   scales: scaleType[];
+  scaleType: TypeOfScale[];
 }
 
 const initState = () => {
@@ -46,6 +52,16 @@ const initState = () => {
             status: true,
           },
         ],
+        scaleType: [
+          {
+            name: "Major",
+            status: true,
+          },
+          {
+            name: "Minor",
+            status: true,
+          },
+        ],
       })
     );
   }
@@ -75,7 +91,7 @@ const useSpeed = (): [number, (newSpeed: number) => void] => {
 
 const useScales = (): [
   () => state["scales"],
-  (newScale: state["scales"]) => void
+  (newState: state["scales"]) => void
 ] => {
   const getScale = (): state["scales"] => {
     const scale: state["scales"] = (
@@ -84,17 +100,41 @@ const useScales = (): [
     return scale;
   };
 
-  const setScale = (newScale: state["scales"]) => {
+  const setScale = (newState: state["scales"]) => {
     const state: state = JSON.parse(localStorage.getItem("state")!) as state;
     localStorage.setItem(
       "state",
       JSON.stringify(<state>{
         ...state,
-        scales: newScale,
+        scales: newState,
       })
     );
   };
   return [getScale, setScale];
 };
 
-export { useSpeed, useScales };
+const useScaleType = (): [
+  () => state["scaleType"],
+  (newState: state["scaleType"]) => void
+] => {
+  const getScale = (): state["scaleType"] => {
+    const scale: state["scaleType"] = (
+      JSON.parse(localStorage.getItem("state")!) as state
+    ).scaleType;
+    return scale;
+  };
+
+  const setScale = (newState: state["scaleType"]) => {
+    const state: state = JSON.parse(localStorage.getItem("state")!) as state;
+    localStorage.setItem(
+      "state",
+      JSON.stringify(<state>{
+        ...state,
+        scaleType: newState,
+      })
+    );
+  };
+  return [getScale, setScale];
+};
+
+export { useSpeed, useScales, useScaleType };
