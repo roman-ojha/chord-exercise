@@ -25,7 +25,6 @@ const nameOfState = "appState";
 const initState = () => {
   const state: state | null = JSON.parse(localStorage.getItem(nameOfState)!);
   if (!state) {
-    console.log("not");
     localStorage.setItem(
       nameOfState,
       JSON.stringify(<state>{
@@ -177,7 +176,9 @@ const useScaleAccidentals = (): [
   };
 
   const setScaleAccidentals = (newState: state["accidentals"]) => {
-    const state: state = JSON.parse(localStorage.getItem("state")!) as state;
+    const state: state = JSON.parse(
+      localStorage.getItem(nameOfState)!
+    ) as state;
     localStorage.setItem(
       nameOfState,
       JSON.stringify(<state>{
