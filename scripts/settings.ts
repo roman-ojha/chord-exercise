@@ -108,6 +108,52 @@ function updateScaleType(checkbox: HTMLInputElement) {
 }
 (<any>window).updateScaleType = updateScaleType;
 
+// Scale Accidentals
+// const scaleAccidentalListInputContainer = document.getElementById(
+//   "scale-type-list-input-container"
+// ) as HTMLDivElement;
+// const [getScaleType, setScaleType] = useScaleType();
+
+// const renderScaleTypeList = () => {
+//   var innerHtml: string = "";
+//   getScaleType().forEach((scaleType) => {
+//     innerHtml += `
+//   <div class="single-scale-type-input-container">
+//     <input type="checkbox" name="${
+//       scaleType.name
+//     }" id="scale-type-${scaleType.name.toLowerCase()}-input" ${
+//       scaleType.status ? "checked" : ""
+//     } oninput='updateScaleType(this)'/>
+//     <label for="scale-type-${scaleType.name.toLowerCase()}-input">${
+//       scaleType.name
+//     }</label>
+//   </div>
+//   `;
+//   });
+//   scaleTypeListInputContainer.innerHTML = innerHtml;
+// };
+// renderScaleTypeList();
+
+// function updateScaleType(checkbox: HTMLInputElement) {
+//   const name: TypeOfScale["name"] = checkbox.name as TypeOfScale["name"];
+//   const checked: boolean = checkbox.checked;
+//   if (
+//     getScaleType().filter((scale) => scale.status).length !== 1 ||
+//     (getScaleType().filter((scale) => scale.status).length === 1 && checked)
+//   ) {
+//     const newScale = getScaleType().map((scale) =>
+//       scale.name === name ? { name: name, status: checked } : scale
+//     );
+//     setScaleType(newScale);
+//   } else if (
+//     getScaleType().filter((scale) => scale.status).length === 1 &&
+//     !checked
+//   ) {
+//     renderScaleTypeList();
+//   }
+// }
+// (<any>window).updateScaleType = updateScaleType;
+
 // save button
 const saveButton = document.getElementById("back-button") as HTMLButtonElement;
 saveButton.addEventListener("click", () => {

@@ -8,18 +8,26 @@ export interface TypeOfScale {
   status: boolean;
 }
 
+export interface Accidentals {
+  name: "" | "#" | "♭";
+  status: boolean;
+}
+
 interface state {
   speed: number;
   scales: Scale[];
   scaleType: TypeOfScale[];
+  accidentals: Accidentals[];
 }
 
+const nameOfState = "appState";
+
 const initState = () => {
-  const state: state | null = JSON.parse(localStorage.getItem("state")!);
+  const state: state | null = JSON.parse(localStorage.getItem(nameOfState)!);
   if (!state) {
     console.log("not");
     localStorage.setItem(
-      "state",
+      nameOfState,
       JSON.stringify(<state>{
         speed: 500,
         scales: [
@@ -62,6 +70,20 @@ const initState = () => {
             status: true,
           },
         ],
+        accidentals: [
+          {
+            name: "",
+            status: true,
+          },
+          {
+            name: "#",
+            status: true,
+          },
+          {
+            name: "♭",
+            status: true,
+          },
+        ],
       })
     );
   }
@@ -71,15 +93,17 @@ initState();
 const useSpeed = (): [number, (newSpeed: number) => void] => {
   const getSpeed = (): number => {
     const speed: state["speed"] = (
-      JSON.parse(localStorage.getItem("state")!) as state
+      JSON.parse(localStorage.getItem(nameOfState)!) as state
     ).speed;
     return speed;
   };
 
   const setSpeed = (newSpeed: number) => {
-    const state: state = JSON.parse(localStorage.getItem("state")!) as state;
+    const state: state = JSON.parse(
+      localStorage.getItem(nameOfState)!
+    ) as state;
     localStorage.setItem(
-      "state",
+      nameOfState,
       JSON.stringify(<state>{
         ...state,
         speed: newSpeed,
@@ -95,15 +119,17 @@ const useScales = (): [
 ] => {
   const getScale = (): state["scales"] => {
     const scale: state["scales"] = (
-      JSON.parse(localStorage.getItem("state")!) as state
+      JSON.parse(localStorage.getItem(nameOfState)!) as state
     ).scales;
     return scale;
   };
 
   const setScale = (newState: state["scales"]) => {
-    const state: state = JSON.parse(localStorage.getItem("state")!) as state;
+    const state: state = JSON.parse(
+      localStorage.getItem(nameOfState)!
+    ) as state;
     localStorage.setItem(
-      "state",
+      nameOfState,
       JSON.stringify(<state>{
         ...state,
         scales: newState,
@@ -119,15 +145,17 @@ const useScaleType = (): [
 ] => {
   const getScaleType = (): state["scaleType"] => {
     const scale: state["scaleType"] = (
-      JSON.parse(localStorage.getItem("state")!) as state
+      JSON.parse(localStorage.getItem(nameOfState)!) as state
     ).scaleType;
     return scale;
   };
 
   const setScaleType = (newState: state["scaleType"]) => {
-    const state: state = JSON.parse(localStorage.getItem("state")!) as state;
+    const state: state = JSON.parse(
+      localStorage.getItem(nameOfState)!
+    ) as state;
     localStorage.setItem(
-      "state",
+      nameOfState,
       JSON.stringify(<state>{
         ...state,
         scaleType: newState,
@@ -137,4 +165,28 @@ const useScaleType = (): [
   return [getScaleType, setScaleType];
 };
 
-export { useSpeed, useScales, useScaleType };
+const useScaleAccidentals = (): [
+  () => state["accidentals"],
+  (newState: state["accidentals"]) => void
+] => {
+  const getScaleAccidentals = (): state["accidentals"] => {
+    const accidentals: state["accidentals"] = (
+      JSON.parse(localStorage.getItem(nameOfState)!) as state
+    ).accidentals;
+    return accidentals;
+  };
+
+  const setScaleAccidentals = (newState: state["accidentals"]) => {
+    const state: state = JSON.parse(localStorage.getItem("state")!) as state;
+    localStorage.setItem(
+      nameOfState,
+      JSON.stringify(<state>{
+        ...state,
+        accidentals: newState,
+      })
+    );
+  };
+  return [getScaleAccidentals, setScaleAccidentals];
+};
+
+export { useSpeed, useScales, useScaleType, useScaleAccidentals };
