@@ -1,3 +1,6 @@
+# custom
+scripts/*.js
+
 # Logs
 logs
 *.log

@@ -5,13 +5,16 @@
   "type": "module",
   "scripts": {
     "dev": "concurrently \"live-server\" \"tsc -w\"",
-    "postinstall": "tsc"
+    "copy:css": "copyfiles -u 1 ./styles/**/* ./dist/styles",
+    "copy:assets": "copyfiles -u 1 ./assets/**/* ./dist/assets",
+    "copy:html": "copyfiles -u 1 ./screens/**/* ./dist/screens && copyfiles ./*.html ./dist",
+    "build": "tsc --outDir ./dist/scripts && yarn copy:css && yarn copy:assets && yarn copy:html"
   },
   "devDependencies": {
     "concurrently": "^7.4.0",
+    "copyfiles": "^2.4.1",
     "live-server": "^1.2.2",
     "nodemon": "^2.0.20",
-    "tsc": "^2.0.4",
     "typescript": "^4.6.4"
   }
 }
