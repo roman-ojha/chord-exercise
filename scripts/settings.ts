@@ -168,5 +168,3 @@ const saveButton = document.getElementById("back-button") as HTMLButtonElement;
 saveButton.addEventListener("click", () => {
   history.back();
 });
-
-export {};

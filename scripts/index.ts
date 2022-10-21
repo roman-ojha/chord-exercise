@@ -85,5 +85,3 @@ startStopButton.addEventListener("click", (e) => {
     start();
   }
 });
-
-export {};
