@@ -3,7 +3,7 @@ import {
   useScales,
   useScaleType,
   useScaleAccidentals,
-} from "./state";
+} from "./state.js";
 
 const scaleElm = document.getElementById("scale") as HTMLHeadingElement;
 const scaleTypeElm = document.getElementById(

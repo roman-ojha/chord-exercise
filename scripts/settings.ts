@@ -6,7 +6,7 @@ import {
   TypeOfScale,
   useScaleAccidentals,
   Accidentals,
-} from "./state";
+} from "./state.js";
 
 // Speed
 const speedValueElm = document.getElementById(
