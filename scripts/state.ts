@@ -9,7 +9,7 @@ export interface TypeOfScale {
 }
 
 export interface Accidentals {
-  name: "" | "#" | "♭";
+  name: "' '" | "#" | "♭";
   status: boolean;
 }
 
@@ -71,7 +71,7 @@ const initState = () => {
         ],
         accidentals: [
           {
-            name: "",
+            name: "' '",
             status: true,
           },
           {

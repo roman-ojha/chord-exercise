@@ -124,7 +124,6 @@ const [getScaleAccidentals, setScaleAccidentals] = useScaleAccidentals();
 
 const renderScaleAccidentalsList = () => {
   var innerHtml: string = "";
-  console.log(getScaleAccidentals());
   getScaleAccidentals().forEach((scaleAccidental) => {
     innerHtml += `
   <div class="single-scale-accidental-input-container">

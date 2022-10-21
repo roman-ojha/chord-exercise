@@ -1,4 +1,9 @@
-import { useSpeed, useScales, useScaleType } from "./state";
+import {
+  useSpeed,
+  useScales,
+  useScaleType,
+  useScaleAccidentals,
+} from "./state";
 
 const scaleElm = document.getElementById("scale") as HTMLHeadingElement;
 const scaleTypeElm = document.getElementById(
@@ -12,13 +17,20 @@ const startStopButton = document.getElementById(
 ) as HTMLButtonElement;
 const [getScales] = useScales();
 const [getScaleType] = useScaleType();
-const accidentals = ["", "#", "♭"];
+// const accidentals = ["", "#", "♭"];
+const [getAccidentals] = useScaleAccidentals();
 const [speed] = useSpeed();
 scaleElm.innerText = getScales().filter((scale) => scale.status)[0].name;
 scaleTypeElm.innerText = getScaleType().filter(
   (scaleType) => scaleType.status
 )[0].name;
 
+const scaleAccidentalInnerText = getAccidentals().filter(
+  (accidental) => accidental.status
+)[0].name;
+
+scaleAccidental.innerText =
+  scaleAccidentalInnerText === "' '" ? "" : scaleAccidentalInnerText;
 const chooseRandomScale = (): {
   scale: string;
   type: string;
@@ -28,12 +40,18 @@ const chooseRandomScale = (): {
   const allowedScaleType = getScaleType().filter(
     (scaleType) => scaleType.status
   );
-  console.log(allowedScaleType);
+  const allowedAccidentals = getAccidentals().filter(
+    (accidental) => accidental.status
+  );
+
+  const randomAccidental =
+    allowedAccidentals[Math.floor(Math.random() * allowedAccidentals.length)]
+      .name;
   return {
     scale: allowedScale[Math.floor(Math.random() * allowedScale.length)].name,
     type: allowedScaleType[Math.floor(Math.random() * allowedScaleType.length)]
       .name,
-    accidentals: accidentals[Math.floor(Math.random() * accidentals.length)],
+    accidentals: randomAccidental === "' '" ? "" : randomAccidental,
   };
 };
 
