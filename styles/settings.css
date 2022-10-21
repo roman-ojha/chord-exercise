@@ -130,7 +130,7 @@ main {
   font-size: 1.5rem;
 }
 
-#save-button {
+#back-button {
   background-color: red;
   color: white;
   padding: 1.5rem 4rem;
@@ -142,10 +142,10 @@ main {
   font-weight: 700;
 }
 
-#save-button:hover {
+#back-button:hover {
   transform: scale(1.02);
 }
 
-#save-button:active {
+#back-button:active {
   transform: scale(0.98);
 }
