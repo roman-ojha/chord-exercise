@@ -37,21 +37,22 @@ main {
   justify-content: center;
   align-items: flex-end;
   gap: 5px;
+  height: 10rem;
 }
 
 #chord h1 {
   color: white;
-  font-size: 5rem;
+  font-size: 10rem;
 }
 
 #chord h2 {
   color: white;
-  font-size: 4rem;
+  font-size: 8rem;
 }
 
 #chord h3 {
   color: white;
-  font-size: 3rem;
+  font-size: 6rem;
 }
 
 #button-and-setting {

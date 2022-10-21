@@ -4,7 +4,7 @@ export interface Scale {
 }
 
 export interface TypeOfScale {
-  name: "Major" | "Minor";
+  name: "major" | "minor";
   status: boolean;
 }
 
@@ -61,11 +61,11 @@ const initState = () => {
         ],
         scaleType: [
           {
-            name: "Major",
+            name: "major",
             status: true,
           },
           {
-            name: "Minor",
+            name: "minor",
             status: true,
           },
         ],

@@ -17,12 +17,14 @@ body {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  padding-bottom: 10px;
+  box-sizing: border-box;
 }
 
 header h1 {
   margin: 0px;
   color: white;
-  font-size: 3rem;
+  font-size: 4rem;
 }
 
 main {
